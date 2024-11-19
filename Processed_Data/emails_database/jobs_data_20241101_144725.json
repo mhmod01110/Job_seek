@@ -1,0 +1,258 @@
+[
+    {
+        "city": "المدينة المنورة",
+        "date": "2024-07-13",
+        "email": "hrresturant57@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة المدينة المنورة",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "بكالوريوس",
+        "job_title": "أخصائية جودة",
+        "experience": "يفضل وجود خبرة سابقة في مجال الجودة أو إدارة الغذاء",
+        "company_name": "شركة أقوات",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "Job@neburgers.com",
+        "domain": "neburgers.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "غير محدد",
+        "job_title": "كاشير ومحضر طعام",
+        "experience": "غير محدد",
+        "company_name": "مطعم نورث ايست",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "Scientistskids@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "التعليم والتطوير المهني"
+        ],
+        "education": "مؤهل دراسي ذا صلة",
+        "job_title": "مسؤولة رعاية أطفال",
+        "experience": "غير محدد",
+        "company_name": "مركز أطفال علماء للترفيه",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "المدينة المنورة",
+        "date": "2024-07-13",
+        "email": "esshco@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة المدينة المنورة",
+        "sectors": [
+            "القطاع الهندسي والفني"
+        ],
+        "education": "محترف",
+        "job_title": "مهندس معماري",
+        "experience": "خبرة في التصاميم والإخراج المعماري",
+        "company_name": "شركة أشكو للاستشارات الهندسية",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "المدينة المنورة",
+        "date": "2024-07-13",
+        "email": "afnanultimate1@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة المدينة المنورة",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة",
+            "الخدمات اللوجستية والأمنية"
+        ],
+        "education": "غير محدد",
+        "job_title": "محاسبة ومندوبة مبيعات وأخصائي دعم فني",
+        "experience": "غير محدد",
+        "company_name": "شركة الحلول النهائية",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "Hr@rodud.com",
+        "domain": "rodud.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "التصميم والفنون الإبداعية"
+        ],
+        "education": "غير محدد",
+        "job_title": "مصمم جرافيك و UI/UX",
+        "experience": "يفضل خبرة سابقة في تصميم الجرافيك أو UI/UX",
+        "company_name": "شركة ردود للخدمات اللوجستية",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "المدينة المنورة",
+        "date": "2024-07-13",
+        "email": "thehelperjob@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة المدينة المنورة",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "ثانوي فأعلى",
+        "job_title": "مدير/ة معرض",
+        "experience": "خبرة سابقة كمدير معرض أو مساعد مدير معرض",
+        "company_name": "علامة تجارية كبرى",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "Oceanbtelecom@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "غير محدد",
+        "job_title": "موظفـ/ـة مبيعات (تسويق ميداني)",
+        "experience": "غير محدد",
+        "company_name": "شركة تسويق",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "hr@abbar-sa.com",
+        "domain": "abbar-sa.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "ثانوي",
+        "job_title": "بائع ساعات",
+        "experience": "غير محدد",
+        "company_name": "معارض كاسيو",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "ad.dooorshr@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "الخدمات اللوجستية والأمنية"
+        ],
+        "education": "غير محدد",
+        "job_title": "أخصائي عمليات موارد بشرية",
+        "experience": "خبرة سابقة في المجال",
+        "company_name": "شركة الأبواب المتطورة",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "المدينة المنورة",
+        "date": "2024-07-13",
+        "email": "Al-Tarji@outlook.com",
+        "domain": "outlook.com",
+        "region": "منطقة المدينة المنورة",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "غير محدد",
+        "job_title": "مدير تشغيل / مدير لوجستيك / مدير مستودع / مدير تقني",
+        "experience": "خبرة لا تقل عن خمس سنوات",
+        "company_name": "شركة متاجر المدينة",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "Myjob.1@hotmail.com",
+        "domain": "hotmail.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "التصميم والفنون الإبداعية"
+        ],
+        "education": "غير محدد",
+        "job_title": "ادارة حسابات سوشيال ميديا مبدع/مبدعه",
+        "experience": "خبرة في تصميم الجرافيك والموشن جرافيك",
+        "company_name": "مؤسسة أرض الذكريات",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "Shahad@mshrab.sat.me",
+        "domain": "mshrab.sat.me",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "غير محدد",
+        "job_title": "كاشير",
+        "experience": "خبرة ستة أشهر كحد أدنى",
+        "company_name": "ROW كافيه",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "deemaluloom_job@hotmail.com",
+        "domain": "hotmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "التعليم والتطوير المهني"
+        ],
+        "education": "بكالوريوس أو ماجستير",
+        "job_title": "مدربة لغة انجليزية",
+        "experience": "غير محدد",
+        "company_name": "معهد ديم العلوم العالي للتدريب",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "المدينة المنورة",
+        "date": "2024-07-13",
+        "email": "info1@riyadat.sa",
+        "domain": "riyadat.sa",
+        "region": "منطقة المدينة المنورة",
+        "sectors": [
+            "قطاع العقارات والمقاولات"
+        ],
+        "education": "مؤهل جامعي",
+        "job_title": "مسوق عقاري",
+        "experience": "سنتين فأكثر",
+        "company_name": "شركة استثمارات",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "المدينة المنورة",
+        "date": "2024-07-13",
+        "email": "job@drslounge.net",
+        "domain": "drslounge.net",
+        "region": "منطقة المدينة المنورة",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "غير محدد",
+        "job_title": "ممثل/ة مبيعات",
+        "experience": "+1 سنوات خبرة",
+        "company_name": "شركة ملابس طبية",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "hr.jobs22@outlook.com",
+        "domain": "outlook.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "غير محدد",
+        "job_title": "اخصائية مبيعات",
+        "experience": "خبرة لا تقل عن سنة",
+        "company_name": "شركة رائدة في مجال التجزئة",
+        "specialization": "اخرى"
+    }
+]

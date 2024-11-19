@@ -1,0 +1,557 @@
+[
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "tele2030jpc@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "التسويق والعلاقات العامة"
+        ],
+        "education": "غير محدد",
+        "job_title": "صانعة و كاتبة محتوى ابداعي للسوشال ميديا",
+        "experience": "لديهم خبرة",
+        "company_name": "شركة دعاية و اعلان",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "Career@alkuhaimi.com",
+        "domain": "alkuhaimi.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "القطاع الهندسي والفني"
+        ],
+        "education": "بكالوريوس",
+        "job_title": "مهندس مبيعات",
+        "experience": "خبرة سابقة في مجال الوظيفة المطلوبة",
+        "company_name": "مجموعة الكحيمي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "Career@alkuhaimi.com",
+        "domain": "alkuhaimi.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "القطاع الهندسي والفني"
+        ],
+        "education": "بكالوريوس",
+        "job_title": "منسق مشاريع",
+        "experience": "خبرة سابقة في مجال الوظيفة المطلوبة",
+        "company_name": "مجموعة الكحيمي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "Career@alkuhaimi.com",
+        "domain": "alkuhaimi.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "القطاع الهندسي والفني"
+        ],
+        "education": "شهادة فنية",
+        "job_title": "فني كهرباء (أبواب)",
+        "experience": "خبرة سابقة في مجال الوظيفة المطلوبة",
+        "company_name": "مجموعة الكحيمي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "Career@alkuhaimi.com",
+        "domain": "alkuhaimi.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "القطاع الهندسي والفني"
+        ],
+        "education": "شهادة فنية",
+        "job_title": "فني كهرباء (أبواب)",
+        "experience": "خبرة سابقة في مجال الوظيفة المطلوبة",
+        "company_name": "مجموعة الكحيمي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "المنطقة الشرقية",
+        "date": "2024-07-13",
+        "email": "Career@alkuhaimi.com",
+        "domain": "alkuhaimi.com",
+        "region": "المنطقة الشرقية",
+        "sectors": [
+            "القطاع الهندسي والفني"
+        ],
+        "education": "شهادة فنية",
+        "job_title": "فني كهرباء (أبواب)",
+        "experience": "خبرة سابقة في مجال الوظيفة المطلوبة",
+        "company_name": "مجموعة الكحيمي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "المنطقة الشرقية",
+        "date": "2024-07-13",
+        "email": "Career@alkuhaimi.com",
+        "domain": "alkuhaimi.com",
+        "region": "المنطقة الشرقية",
+        "sectors": [
+            "القطاع الهندسي والفني"
+        ],
+        "education": "بكالوريوس",
+        "job_title": "مهندس موقع",
+        "experience": "خبرة سابقة في مجال الوظيفة المطلوبة",
+        "company_name": "مجموعة الكحيمي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "Career@alkuhaimi.com",
+        "domain": "alkuhaimi.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "القطاع الهندسي والفني"
+        ],
+        "education": "بكالوريوس",
+        "job_title": "مهندس موقع",
+        "experience": "خبرة سابقة في مجال الوظيفة المطلوبة",
+        "company_name": "مجموعة الكحيمي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "Career@alkuhaimi.com",
+        "domain": "alkuhaimi.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "القطاع الهندسي والفني"
+        ],
+        "education": "بكالوريوس",
+        "job_title": "مهندس موقع",
+        "experience": "خبرة سابقة في مجال الوظيفة المطلوبة",
+        "company_name": "مجموعة الكحيمي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "career@saee.sa",
+        "domain": "saee.sa",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "غير محدد",
+        "job_title": "كاشير",
+        "experience": "غير محدد",
+        "company_name": "شركة ساعي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "job123@sigmaksa.com",
+        "domain": "sigmaksa.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "القطاع الهندسي والفني"
+        ],
+        "education": "دبلوم",
+        "job_title": "فني ميكانيكا",
+        "experience": "سنة الى سنتين",
+        "company_name": "شركة كبرى",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "hrd@masarlogistics.sa",
+        "domain": "masarlogistics.sa",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "الخدمات اللوجستية والأمنية"
+        ],
+        "education": "غير محدد",
+        "job_title": "مساعد إداري",
+        "experience": "غير محدد",
+        "company_name": "شركة مسار للخدمات اللوجستية",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "recruitt.email@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "الإدارة والدعم الإداري"
+        ],
+        "education": "مؤهل عملي مناسب",
+        "job_title": "سكرتير",
+        "experience": "0-2 سنتين",
+        "company_name": "غير محدد",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "naif@brandhouseadv.com",
+        "domain": "brandhouseadv.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "التسويق والعلاقات العامة"
+        ],
+        "education": "بكالوريوس/ دبلوم",
+        "job_title": "أخصائي تسويق",
+        "experience": "حديثي التخرج",
+        "company_name": "شركة براند هاوس",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "jobs2023@irc.sa",
+        "domain": "irc.sa",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "غير محدد",
+        "job_title": "مسؤولة تسويق ومبيعات",
+        "experience": "خبرة سابقة في مجال التسويق أو المبيعات",
+        "company_name": "صالون نسائي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "hiring@keytime.sa",
+        "domain": "keytime.sa",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "دبلوم فأعلى",
+        "job_title": "مدير حساب عملاء",
+        "experience": "خبرة لا تقل عن 3 سنوات",
+        "company_name": "شركة Keytime",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "Jobs@arabianoud.com.sa",
+        "domain": "arabianoud.com.sa",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "ثانوي",
+        "job_title": "عاملة انتاج",
+        "experience": "غير محدد",
+        "company_name": "مصنع نسائي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "irec.irec.a@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "الخدمات اللوجستية والأمنية"
+        ],
+        "education": "غير محدد",
+        "job_title": "فني سحب عينات ميداني",
+        "experience": "خبرة سنة على الأقل",
+        "company_name": "مشروع محطة تنقية المياه",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "hireprohub@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "الرعاية الصحية والخدمات الطبية"
+        ],
+        "education": "بكالوريوس",
+        "job_title": "مدير القطاع الطبي",
+        "experience": "خبرة لا تقل عن 10 سنوات",
+        "company_name": "غير محدد",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "job123@sigmaksa.com",
+        "domain": "sigmaksa.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "غير محدد",
+        "job_title": "منسق عمليات",
+        "experience": "خبرة في نفس المجال",
+        "company_name": "شركة كبرى",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "irec.irec.a@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "البيئة والاستدامة"
+        ],
+        "education": "بكالوريوس",
+        "job_title": "معد تقارير بيئية - ادارة جودة الهواء",
+        "experience": "غير محدد",
+        "company_name": "شركة رائدة في المجال البيئي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "Jobs@kian-d.com",
+        "domain": "kian-d.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "القطاع المالي والمحاسبي"
+        ],
+        "education": "بكالوريوس",
+        "job_title": "مدير مالي",
+        "experience": "خبرة لا تقل عن 7 سنوات",
+        "company_name": "غير محدد",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "hr@hireksa.com",
+        "domain": "hireksa.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "الإدارة والدعم الإداري"
+        ],
+        "education": "غير محدد",
+        "job_title": "موظف إداري",
+        "experience": "خبرة من سنة إلى سنتين",
+        "company_name": "شركة روز",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "recruitt.email@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "الإدارة والدعم الإداري"
+        ],
+        "education": "مؤهل عملي مناسب",
+        "job_title": "سكرتير",
+        "experience": "0-2 سنتين",
+        "company_name": "غير محدد",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الخرج",
+        "date": "2024-07-13",
+        "email": "HR.salleh4@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "قطاع العقارات والمقاولات"
+        ],
+        "education": "بكالوريوس",
+        "job_title": "المشتريات",
+        "experience": "غير محدد",
+        "company_name": "مصنع في المدينة الصناعية بالخرج",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "Jobs@arabianoud.com.sa",
+        "domain": "arabianoud.com.sa",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "ثانوي",
+        "job_title": "عاملة انتاج",
+        "experience": "غير محدد",
+        "company_name": "مصنع نسائي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "esnadmaharah@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "التجزئة والمبيعات المباشرة"
+        ],
+        "education": "غير محدد",
+        "job_title": "مندوب مبيعات",
+        "experience": "خبرة لا تقل عن سنة",
+        "company_name": "أحد أكبر البنوك السعودية",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "jobway.hiring.ksa@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "الرعاية الصحية والخدمات الطبية"
+        ],
+        "education": "غير محدد",
+        "job_title": "طبيب زراعة اسنان",
+        "experience": "10 سنوات",
+        "company_name": "شركة جوب واي للتوظيف الطبي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "jobway.hiring.ksa@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "الخدمات القانونية والاستشارية"
+        ],
+        "education": "غير محدد",
+        "job_title": "رئيس حسابات",
+        "experience": "خبرة لا تقل عن سنتين",
+        "company_name": "شركة جوب واي للتوظيف الطبي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "jobway.hiring.ksa@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "الرعاية الصحية والخدمات الطبية"
+        ],
+        "education": "غير محدد",
+        "job_title": "طبيب/ة نفسي",
+        "experience": "خبرة لا تقل عن سنتين في التخصص",
+        "company_name": "شركة جوب واي للتوظيف الطبي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "نجران",
+        "date": "2024-07-13",
+        "email": "jobway.hiring.ksa@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة نجران",
+        "sectors": [
+            "الرعاية الصحية والخدمات الطبية"
+        ],
+        "education": "غير محدد",
+        "job_title": "تمريض اناث",
+        "experience": "خبرة لا تقل عن سنتين في التخصص",
+        "company_name": "شركة جوب واي للتوظيف الطبي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "jobway.hiring.ksa@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "الرعاية الصحية والخدمات الطبية"
+        ],
+        "education": "غير محدد",
+        "job_title": "تمريض اناث",
+        "experience": "خبرة لا تقل عن سنتين في التخصص",
+        "company_name": "شركة جوب واي للتوظيف الطبي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "jobway.hiring.ksa@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "الرعاية الصحية والخدمات الطبية"
+        ],
+        "education": "غير محدد",
+        "job_title": "تمريض ذكور واناث - اخصائ/ة تغذية",
+        "experience": "خبرة لا تقل عن سنتين في التخصص",
+        "company_name": "شركة جوب واي للتوظيف الطبي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الرياض",
+        "date": "2024-07-13",
+        "email": "jobway.hiring.ksa@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "الرعاية الصحية والخدمات الطبية"
+        ],
+        "education": "غير محدد",
+        "job_title": "اخصائية اشعة / اخصائية تمريض / اطباء جلدية / اطباء اطفال / اخصائي انف واذن / مسوقة طبية",
+        "experience": "خبرة لا تقل عن سنتين في التخصص",
+        "company_name": "شركة جوب واي للتوظيف الطبي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "غير محدد",
+        "date": "2024-07-13",
+        "email": "jobway.hiring.ksa@gmail.com",
+        "domain": "gmail.com",
+        "region": "غير محدد",
+        "sectors": [
+            "الرعاية الصحية والخدمات الطبية"
+        ],
+        "education": "غير محدد",
+        "job_title": "اخصائي/ة وجه وفكين",
+        "experience": "خبرة لا تقل عن سنتين في التخصص",
+        "company_name": "شركة جوب واي للتوظيف الطبي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "الدمام",
+        "date": "2024-07-13",
+        "email": "jobway.hiring.ksa@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة الرياض",
+        "sectors": [
+            "الرعاية الصحية والخدمات الطبية"
+        ],
+        "education": "غير محدد",
+        "job_title": "نائب طوارئ",
+        "experience": "خبرة لا تقل عن سنتين في التخصص",
+        "company_name": "شركة جوب واي للتوظيف الطبي",
+        "specialization": "اخرى"
+    },
+    {
+        "city": "جدة",
+        "date": "2024-07-13",
+        "email": "tele2030jpc@gmail.com",
+        "domain": "gmail.com",
+        "region": "منطقة مكة المكرمة",
+        "sectors": [
+            "التسويق والعلاقات العامة"
+        ],
+        "education": "غير محدد",
+        "job_title": "صانعة و كاتبة محتوى ابداعي للسوشال ميديا",
+        "experience": "لديهم خبرة",
+        "company_name": "شركة دعاية و اعلان",
+        "specialization": "اخرى"
+    }
+]
