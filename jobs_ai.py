@@ -8,21 +8,16 @@ from datetime import datetime  # Import the datetime module
 from gpt_client import client, get_response
 
 class JobProcessor:
-    def __init__(self, csv_path, log_path="job_processing.log", duration_limit=180):
+    def __init__(self, csv_path, log_path="job_processing.log", duration_limit=3):
         self.csv_path = csv_path
-        
-        # Generate a date string in YYYY-MM-DD format
         current_date = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
-        # Create the json_path with the date included in the filename
         self.json_path = f"Processed_Data/emails_database/jobs_data_{current_date}.json"
-        
-        # Ensure the directory exists
         os.makedirs(os.path.dirname(self.json_path), exist_ok=True)
 
-        self.duration_limit = duration_limit
+        self.duration_limit = duration_limit * 60
         self.job_posts = self._load_job_posts()
         self.all_jobs = []
+        self.df = None  # To store the loaded DataFrame
         self._setup_logging(log_path)
 
     def _setup_logging(self, log_path):
@@ -36,26 +31,34 @@ class JobProcessor:
         )
 
     def _load_job_posts(self):
-        # Get a list of all CSV files in the specified directory
-        csv_files = [f for f in os.listdir(self.csv_path) if f.endswith('.csv')]
-        
-        # If there are no CSV files, return an empty list
+        csv_files = [f for f in os.listdir(self.csv_path) if f.endswith(".csv")]
         if not csv_files:
             return []
 
-        # Construct full file paths
         full_paths = [os.path.join(self.csv_path, f) for f in csv_files]
-        
-        # Get the most recent CSV file based on modification time
         most_recent_file = max(full_paths, key=os.path.getmtime)
         
-        # Load the CSV file into a DataFrame and return the list of job posts
-        df = pd.read_csv(most_recent_file)
+        self.df = pd.read_csv(most_recent_file)
         
-        # Filter on email_count
-        df = df[df["email_count"] > 0]
-        
-        return df["text"].to_list()
+        self.df = self.df[self.df["email_count"] > 0]
+
+        # Filter to exclude "Completed Extraction"
+        filtered_df = self.df[self.df["postStatus"] != "Completed Extraction"]
+        return filtered_df["text"].tolist()
+
+    def _update_post_status(self):
+        try:
+            # Update the "postStatus" for processed rows
+            self.df.loc[
+                self.df["text"].isin(self.job_posts), "postStatus"
+            ] = "Completed Extraction"
+            
+            # Save back to the same CSV file
+            csv_file_path = os.path.join(self.csv_path, "updated_jobs.csv")
+            self.df.to_csv(csv_file_path, index=False, encoding="utf-8")
+            logging.info(f"Updated post statuses saved to: {csv_file_path}")
+        except Exception as e:
+            logging.error(f"Error updating post statuses: {e}")
 
     def _save_jobs_to_json(self):
         try:
@@ -89,8 +92,10 @@ class JobProcessor:
         except Exception as e:
             logging.error(f"Error saving to CSV or Excel files: {e}")
 
+
     async def fetch_job_post(self, prompt):
-        return await get_response(prompt, client)
+        
+        return await get_response(f"Extract job information for the following ad : {prompt}", client)
 
     async def process_jobs(self):
         start_time = time.time()
@@ -99,16 +104,18 @@ class JobProcessor:
             if time.time() - start_time > self.duration_limit:
                 logging.info("Time limit exceeded! Saving jobs before exit...")
                 self._save_jobs_to_json()
+                self._update_post_status()
                 break
-            
-            try:
-                result = await self.fetch_job_post(prompt)
-                if result:
-                    self.all_jobs.extend(result)
-                    logging.info(f"Processed Prompt No: ({i}), which is '{prompt[:30]}' successfully ✅")
-            except Exception as e:
-                logging.error(f"Error processing prompt No: ({i}) which is '{prompt[:30]}': {e}")
-
+            else:
+                try:
+                    result = await self.fetch_job_post(prompt)
+                    if result:
+                        self.all_jobs.extend(result)
+                        logging.info(f"Processed Prompt No: ({i}), which is '{prompt[:30]}' successfully ✅")
+                except Exception as e:
+                    logging.error(f"Error processing prompt No: ({i}) which is '{prompt[:30]}': {e}")
+                    
+        self._update_post_status()
         self._save_jobs_to_json()
         self.save_jobs_to_csv_and_xlsx()  
 

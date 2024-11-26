@@ -7,6 +7,7 @@ import uuid
 import requests
 import os
 import time
+import json
 from telegram_check import client, get_latest_post_number
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import (
@@ -184,7 +185,7 @@ class ScraperClientApp(QWidget):
 
         self.process_data_btn = QPushButton("Process Data")
         self.process_data_btn.clicked.connect(self.process_data)
-        self.process_data_btn.setEnabled(False)
+        self.process_data_btn.setEnabled(True)
         layout.addWidget(self.process_data_btn)
 
         # Default file paths
@@ -257,7 +258,7 @@ class ScraperClientApp(QWidget):
 
         self.process_data_btn = QPushButton("Process Data")
         self.process_data_btn.clicked.connect(self.process_data)
-        self.process_data_btn.setEnabled(False)
+        self.process_data_btn.setEnabled(True)
         layout.addWidget(self.process_data_btn)
 
 
@@ -439,10 +440,12 @@ class ScraperClientApp(QWidget):
     ##################################################
     # ---------- Data processing and GPT ----------- #
     ##################################################
+
     def process_data(self):
-        data = self.collect_scraping_data(False, linkedin_signal=self.is_linkedin_tab_active())
+        data = self.collect_scraping_data(True, linkedin_signal=self.is_linkedin_tab_active())
         self.send_request(data, "process_data", "Success ✅", "Data processed Started successfully!", "Failed to process data.", "Data processing in progress .. ")
         self.send_request(data, "gpt_extract", "Success ✅", "GPT Extraction Started Successfully!", "Failed to GPT Extract.", "GPT extraction in progress ..")
+        self.process_data_btn.setEnabled(False)
 
     ###############################################################
     # ---------- Check Active Tab (To decide LI or T) ----------- #

@@ -86,9 +86,9 @@ class ScrapeRequest(BaseModel):
     li_keywords_path: str
     li_urls_path: str
     t_raw_dir: str
+    t_proc_dir: str
     li_raw_dir: str
     li_proc_dir: str
-    t_proc_dir: str
     li_csv_keywords: str
     filtered_file_name: str
     li_date: str
@@ -98,8 +98,8 @@ class ScrapeRequest(BaseModel):
     process: bool
     linkedin_signal: bool
     t_channel: List[str] | None | List[None]
-    t_posts_from: int  
-    t_posts_to: int
+    t_posts_from: List[int]  
+    t_posts_to: List[int]
 
 ################################################
 # ------------ Scraping Async task ----------- #
@@ -202,10 +202,10 @@ def process_data(raw_dir: str, proc_dir: str, filtered_file_name: str, linkedin_
 ###########################################
 # ------------ GPT Extraction ----------- #
 ###########################################
-async def gpt_extract(csv_path: str):
+async def gpt_extract(csv_path: str, scrape_request: ScrapeRequest):
     scraping_status["status"] = "Start GPT Extraction .."
     try:
-        processor = JobProcessor(csv_path=csv_path)
+        processor = JobProcessor(csv_path=csv_path, duration_limit=scrape_request.time_limit)
         await processor.process_jobs()
         scraping_status["status"] = " - GPT Extraction Complete"
     except KeyboardInterrupt:
@@ -239,7 +239,7 @@ async def start_process(scrape_request: ScrapeRequest, background_tasks: Backgro
 @app.post("/gpt_extract")
 async def start_extract(scrape_request: ScrapeRequest, background_tasks: BackgroundTasks):
     csv_path = f"Processed_Data/{'linkedin' if scrape_request.linkedin_signal else 'telegram'}_processed_data"
-    background_tasks.add_task(gpt_extract, csv_path)
+    background_tasks.add_task(gpt_extract, csv_path, scrape_request)
     return {"message": "GPT extraction started"}
 
 @app.get("/scraping_status")

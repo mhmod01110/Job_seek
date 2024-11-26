@@ -1,8 +1,8 @@
 from telethon import TelegramClient
 
 # بيانات API الخاصة بك
-api_id = '###'  # استبدل YOUR_API_ID بمعرف API الخاص بك
-api_hash = '###'  # استبدل YOUR_API_HASH بمفتاح API الخاص بك
+api_id = '23282265'  # استبدل YOUR_API_ID بمعرف API الخاص بك
+api_hash = 'c0b4ac7c0dba17132c7b77ad08991dc4'  # استبدل YOUR_API_HASH بمفتاح API الخاص بك
 
 # إنشاء الجلسة
 client = TelegramClient('session_name', api_id, api_hash)
@@ -23,4 +23,7 @@ async def get_latest_post_number(channel_username):
     except:
         return 0
     
+# with client:
+#     # ضع اسم المستخدم الخاص بالقناة هنا
+#     client.loop.run_until_complete(get_latest_post_number('jobsmadina'))
 

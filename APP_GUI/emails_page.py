@@ -11,7 +11,7 @@ from users_orders_manager.interface import *  # Replace with the actual function
 import pandas as pd
 
 from PyQt5.QtWidgets import (
-    QApplication, QWidget, QVBoxLayout, QHBoxLayout, QTableWidget, QTableWidgetItem,
+    QApplication, QWidget, QVBoxLayout, QHBoxLayout, QTableWidget, QTableWidgetItem,QHeaderView,
     QDialog, QFormLayout, QLineEdit, QComboBox, QDialogButtonBox, QSpinBox, QMessageBox, QPushButton, QLabel
 )
 from PyQt5.QtGui import QFont
@@ -113,7 +113,19 @@ class EmailsManagementPage(QWidget):
         # Table to show email records
         self.email_table = QTableWidget()
         self.email_table.setColumnCount(4)
+        self.email_table.setEditTriggers(QTableWidget.NoEditTriggers)
         self.email_table.setHorizontalHeaderLabels(["Email", "City", "Region", "Sectors"])
+        self.email_table.setStyleSheet("background-color: white;")
+        self.email_table.horizontalHeader().setStyleSheet("background-color: lightgray; font-size: 16;")
+        self.email_table.verticalHeader().setStyleSheet("background-color: lightgray; font-size: 16;")
+        # Enable auto-resize for columns and rows
+        self.email_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.email_table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.email_table.resizeColumnsToContents()
+        self.email_table.resizeRowsToContents()
+        # Enable word wrapping
+        self.email_table.setWordWrap(True)
+        self.email_table.setFont(QFont("Arial", 12))
         self.populate_email_table()
         layout.addWidget(self.email_table)
 
@@ -201,7 +213,7 @@ class EmailsManagementPage(QWidget):
         global email_db
         new_record = pd.DataFrame([email_data])
         email_db = pd.concat([email_db, new_record], ignore_index=True)
-        email_db = group_email_db(email_db)
+        # email_db = group_email_db(email_db)
 
     def update_email_record_in_db(self, email, updated_data):
         """Update an existing email record in the database."""

@@ -11,7 +11,9 @@ from orders_page import OrdersManagementPage
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout, QTreeWidget, QTreeWidgetItem,
     QStackedWidget, QLabel, QPushButton, QFormLayout, QTableWidget, QTableWidgetItem,
-    QDialog, QLineEdit, QComboBox, QDialogButtonBox, QSpinBox, QMessageBox
+    QDialog, QLineEdit, QComboBox, QDialogButtonBox, QSpinBox, QMessageBox,QHeaderView,
+    QListWidget, QListWidgetItem, QAbstractItemView
+    
 )
 from PyQt5.QtGui import QFont, QIcon
 from PyQt5.QtCore import Qt
@@ -156,7 +158,35 @@ class UpdateUserDialog(QDialog):
             'request_num': self.request_num_input.value(),
             'period_days': self.period_days_input.value() if self.period_days_input.isEnabled() else None
         }
-   
+
+class MultiSelectDialog(QDialog):
+    """A dialog for selecting multiple items from a list."""
+
+    def __init__(self, title, items, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle(title)
+        self.setLayout(QVBoxLayout())
+
+        # List widget for items
+        self.list_widget = QListWidget(self)
+        self.list_widget.setSelectionMode(QAbstractItemView.MultiSelection)
+        for item in items:
+            QListWidgetItem(item, self.list_widget)
+
+        # Buttons
+        self.button_box = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel, self)
+        self.button_box.accepted.connect(self.accept)
+        self.button_box.rejected.connect(self.reject)
+
+        # Add widgets to layout
+        self.layout().addWidget(self.list_widget)
+        self.layout().addWidget(self.button_box)
+
+    def get_selected_items(self):
+        """Return a list of selected items."""
+        return [item.text() for item in self.list_widget.selectedItems()]
+
+ 
 class UsersManagementPage(QWidget):
     def __init__(self):
         super().__init__()
@@ -177,9 +207,21 @@ class UsersManagementPage(QWidget):
         # Table to show users
         self.user_table = QTableWidget()
         self.user_table.setColumnCount(7)
+        self.user_table.setEditTriggers(QTableWidget.NoEditTriggers)
         self.user_table.setHorizontalHeaderLabels(
             ["ID", "Name", "Email", "Type", "Request Num", "Period Days", "Last Request Date"]
         )
+        self.user_table.setStyleSheet("background-color: white;")
+        self.user_table.horizontalHeader().setStyleSheet("background-color: lightgray; font-size: 16;")
+        self.user_table.verticalHeader().setStyleSheet("background-color: lightgray; font-size: 16;")
+        # Enable auto-resize for columns and rows
+        self.user_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.user_table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.user_table.resizeColumnsToContents()
+        self.user_table.resizeRowsToContents()
+        # Enable word wrapping
+        self.user_table.setWordWrap(True)
+        self.user_table.setFont(QFont("Arial", 12))
         self.populate_user_table()
         layout.addWidget(self.user_table)
 
@@ -217,21 +259,37 @@ class UsersManagementPage(QWidget):
             self.user_table.setItem(row, 6, QTableWidgetItem(str(user.last_request_date)))
 
     def create_order_for_selected_user(self):
-        """Create an order for the selected user."""
+        """Create an order for the selected user with city and sector selection."""
         selected_row = self.user_table.currentRow()
         if selected_row >= 0:
             user_id = self.user_table.item(selected_row, 0).text()
-            retrieved_posts = 0  # Set as needed or fetch dynamically
-            try:
-                create_order_for_user(user_id, email_db, retrieved_posts)
-                QMessageBox.information(self, "Success", "Order created successfully.")
-            except Exception as e:
-                QMessageBox.warning(self, "Error", f"Failed to create order: {e}")
+
+            # Open dialog to select cities
+            cities_dialog = MultiSelectDialog("Select Cities", cities_list)
+            if cities_dialog.exec_() == QDialog.Accepted:
+                selected_cities = cities_dialog.get_selected_items()
+                # Open dialog to select sectors
+                sectors_dialog = MultiSelectDialog("Select Sectors", sectors_list)
+                if sectors_dialog.exec_() == QDialog.Accepted:
+                    selected_sectors = sectors_dialog.get_selected_items()
+
+                    # Proceed with order creation
+                    retrieved_posts = 0  # Set as needed or fetch dynamically
+                    try:
+                        create_order_for_user(user_id, email_db, retrieved_posts, selected_cities, selected_sectors)
+                        QMessageBox.information(self, "Success", "Order created successfully.")
+                    except Exception as e:
+                        QMessageBox.warning(self, "Error", f"Failed to create order: {e}")
+                else:
+                    QMessageBox.warning(self, "Warning", "No sectors selected. Order creation canceled.")
+            else:
+                QMessageBox.warning(self, "Warning", "No cities selected. Order creation canceled.")
         else:
             QMessageBox.warning(self, "Error", "Please select a user to create an order.")
-        
+
         # Update orders table
         self.order_mng.populate_order_table()
+
 
     def show_create_user_dialog(self):
         """Show the Create User dialog."""

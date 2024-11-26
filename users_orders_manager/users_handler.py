@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, Enum, ForeignKey, and_ , CheckConstraint
+from sqlalchemy import create_engine, Table, Column, Integer, String, DateTime, Enum, ForeignKey, and_ , CheckConstraint
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.sql import func
@@ -45,19 +45,50 @@ class User(Base):
         ),
         CheckConstraint("request_num > 0", name="check_request_num_positive")
     )
+
+order_city_association = Table(
+    "order_city_association", Base.metadata,
+    Column("order_id", Integer, ForeignKey("orders.order_id"), primary_key=True),
+    Column("city_id", Integer, ForeignKey("cities.city_id"), primary_key=True)
+)
+
+order_sector_association = Table(
+    "order_sector_association", Base.metadata,
+    Column("order_id", Integer, ForeignKey("orders.order_id"), primary_key=True),
+    Column("sector_id", Integer, ForeignKey("sectors.sector_id"), primary_key=True)
+)
+
+
+class City(Base):
+    __tablename__ = "cities"
     
-# Orders table
+    city_id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String, unique=True, nullable=False)
+    orders = relationship("Order", secondary=order_city_association, back_populates="cities")
+
+class Sector(Base):
+    __tablename__ = "sectors"
+    
+    sector_id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String, unique=True, nullable=False)
+    orders = relationship("Order", secondary=order_sector_association, back_populates="sectors")
+
+    
 class Order(Base):
     __tablename__ = "orders"
     
     order_id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(String, ForeignKey("users.id"), nullable=False)  # Foreign key to users
+    user_id = Column(String, ForeignKey("users.id"), nullable=False)
     order_date = Column(DateTime, default=datetime.now())
-    retrieved_posts = Column(Integer, default=0)  # Default posts retrieved is 0
-    remaining_posts = Column(Integer, default=0)  # Calculated based on request_num - retrieved_posts
+    retrieved_posts = Column(Integer, default=0)
+    remaining_posts = Column(Integer, default=0)
     order_status = Column(Enum(OrderStatus), nullable=False, default=OrderStatus.Incomplete)
     
+    cities = relationship("City", secondary=order_city_association, back_populates="orders")
+    sectors = relationship("Sector", secondary=order_sector_association, back_populates="orders")
+    
     user = relationship("User", back_populates="orders")
+
     
 # Database setup
 engine = create_engine("sqlite:///users_database.db")
@@ -220,28 +251,57 @@ class OrderManager:
                         print(f"New order automatically created for recurrent user {user.id}.")
                         self.session.commit()
 
-    def create_order(self, user_id, df, num_retrieved_posts=0):
-        """Create a new order for a user."""
+
+    def create_order(self, user_id, df, num_retrieved_posts=0, city_names=None, sector_names=None):
+        """
+        Create a new order for a user and associate it with cities and sectors.
+        """
         user = UserManager(self.session).get_user_by_id(user_id)
         if not user:
             print("User not found.")
             return
         
-        if (num_retrieved_posts) >= len(df):
-            print("The User Consume All Posts in Database")
+        if num_retrieved_posts >= len(df):
+            print("The user has consumed all posts in the database.")
             return
         
+        # Determine remaining posts
         remaining_posts = user.request_num - num_retrieved_posts
+        
+        # Create a new order
         order = Order(
             user_id=user_id,
             retrieved_posts=num_retrieved_posts,
             remaining_posts=remaining_posts,
             order_status=OrderStatus.Incomplete if remaining_posts > 0 else OrderStatus.Complete
         )
+        
+        # Associate cities
+        if city_names:
+            for city_name in city_names:
+                city = self.session.query(City).filter_by(name=city_name).first()
+                if not city:
+                    # Create the city if it doesn't exist
+                    city = City(name=city_name)
+                    self.session.add(city)
+                order.cities.append(city)
+        
+        # Associate sectors
+        if sector_names:
+            for sector_name in sector_names:
+                sector = self.session.query(Sector).filter_by(name=sector_name).first()
+                if not sector:
+                    # Create the sector if it doesn't exist
+                    sector = Sector(name=sector_name)
+                    self.session.add(sector)
+                order.sectors.append(sector)
+        
+        # Save the order
         self.session.add(order)
         self.session.commit()
         print(f"Order {order.order_id} created for User {user_id}.")
         return order
+
 
     def get_order_by_id(self, order_id):
         """Retrieve an order by its ID."""
@@ -250,13 +310,38 @@ class OrderManager:
     def get_all_orders(self):
         """Retrieve all orders."""
         return self.session.query(Order).all()
-
-    def update_order(self, order_id, **kwargs):
-        """Update order information. Pass fields as keyword arguments."""
+    
+    def update_order(self, order_id, city_names=None, sector_names=None, **kwargs):
+        """
+        Update order information, including cities and sectors. Pass fields as keyword arguments.
+        """
         order = self.get_order_by_id(order_id)
         if order:
+            # Update basic fields
             for key, value in kwargs.items():
                 setattr(order, key, value)
+            
+            # Update cities
+            if city_names is not None:
+                # Clear existing cities
+                order.cities = []
+                for city_name in city_names:
+                    city = self.session.query(City).filter_by(name=city_name).first()
+                    if not city:
+                        city = City(name=city_name)
+                        self.session.add(city)
+                    order.cities.append(city)
+            
+            # Update sectors
+            if sector_names is not None:
+                # Clear existing sectors
+                order.sectors = []
+                for sector_name in sector_names:
+                    sector = self.session.query(Sector).filter_by(name=sector_name).first()
+                    if not sector:
+                        sector = Sector(name=sector_name)
+                        self.session.add(sector)
+                    order.sectors.append(sector)
             
             # Recalculate remaining posts and update order status if needed
             if 'retrieved_posts' in kwargs:
@@ -268,6 +353,7 @@ class OrderManager:
         else:
             print("Order not found.")
 
+
     def delete_order(self, order_id):
         """Delete an order by its ID."""
         order = self.get_order_by_id(order_id)
@@ -278,23 +364,51 @@ class OrderManager:
         else:
             print("Order not found.")
     
+    
     def handle_order(self, order_id: int, posts_df: pd.DataFrame):
         """Handle an order using only the order ID."""
         order = self.get_order_by_id(order_id)
         if not order:
-            print(f"No order found with ID {order_id}.")
-            return
+            warning = f"No order found with ID {order_id}."
+            print(warning)
+            return warning
 
         user = self.get_user_by_id(order.user_id)
         if not user:
-            print(f"No user associated with order ID {order_id}.")
-            return
+            warning = f"No user associated with order ID {order_id}."
+            print(warning)
+            return warning
+
+        # Fetch user-requested cities and sectors
+        requested_cities = [city.name for city in order.cities]
+        requested_sectors = [sector.name for sector in order.sectors]
+
+        if not requested_cities and not requested_sectors:
+            warning = f"Order {order_id} has no requested cities or sectors. Unable to handle."
+            print(warning)
+            return warning
+
+        # Filter posts_df for matching cities or sectors
+        filtered_posts = posts_df[
+            posts_df["city"].apply(lambda post_cities: any(city in post_cities for city in requested_cities)) |
+            posts_df["sectors"].apply(lambda post_sectors: any(sector in post_sectors for sector in requested_sectors))
+        ]
+
+        if filtered_posts.empty:
+            warning = f"No matching posts found for order {order_id}."
+            print(warning)
+            return warning
         
+        
+        status_flag = None
         if user.user_type == UserType.SingleRequest:
-            self._handle_single_order_user(user, order, posts_df)
+            status_flag = self._handle_single_order_user(user, order, filtered_posts)
         else:
-            self._handle_recurrent_user_order(user, order, posts_df)
-                    
+            status_flag = self._handle_recurrent_user_order(user, order, filtered_posts)
+        
+        user.last_request_date = datetime.now()
+        
+        return status_flag
         
     def _handle_single_order_user(self, user: User, order: Order, posts_df: pd.DataFrame):
         total_requested_posts = user.request_num
@@ -319,34 +433,45 @@ class OrderManager:
         user.provided_posts.update(posts_to_retrieve['email'].tolist())
         order.retrieved_posts += posts_to_retrieve_count
         order.remaining_posts = total_requested_posts - order.retrieved_posts
-
+        
+        status_flag = None
         if order.remaining_posts <= 0:
             order.order_status = OrderStatus.Complete
-            print(f"Order {order.order_id} for User {user.id} marked as complete.")
+            status_flag = f"Order {order.order_id} for User {user.id} marked as complete."
         else:
             order.order_status = OrderStatus.Incomplete
-            print(f"Order {order.order_id} for User {user.id} is still incomplete. {order.remaining_posts} posts remaining.")
-
+            status_flag = f"Order {order.order_id} for User {user.id} is still incomplete. {order.remaining_posts} posts remaining."
+        print(status_flag)
         self.session.commit()
+        return status_flag
         
     def _handle_recurrent_user_order(self, user: User, order:Order, posts_df: pd.DataFrame):
         # Check if enough time has passed since the last request
+        status_flag = None
         if user.last_request_date:
             next_allowed_date = user.last_request_date + timedelta(days=user.period_days)
             if next_allowed_date > datetime.now():
-                print(f"User {user.id} cannot request posts yet. Wait until {next_allowed_date}.")
-                return
+                status_flag = f"User {user.id} cannot request posts yet. Wait until {next_allowed_date}."
+                print(status_flag)
+                return status_flag
 
         # Process as single order if waiting period has passed
         self._handle_single_order_user(user, order, posts_df)
+        city_names = [city.name for city in order.cities]  # Extract city names
+        sector_names = [sector.name for sector in order.sectors]  # Extract sector names
 
-        # If order was completed, update last request date and potentially create a new order
-        if order.order_status == OrderStatus.Complete:
-            user.last_request_date = datetime.now()
-            self.create_order(user.id, posts_df, num_retrieved_posts=0)  # Start a new order for the next period
-            print(f"New order created for User {user.id} as recurrent order cycle continues.")
-
+        self.create_order(
+            user.id, 
+            posts_df, 
+            num_retrieved_posts=0, 
+            city_names=city_names, 
+            sector_names=sector_names  # Pass names instead of entities
+            )
+        print(f"New order created for User {user.id} as recurrent order cycle continues.")
+        user.last_request_date = datetime.now()
         self.session.commit()
+        status_flag = f"User {user.id} has request {order.retrieved_posts} posts"
+        return status_flag
 
         
     def get_available_posts(self, posts_df: pd.DataFrame, user):

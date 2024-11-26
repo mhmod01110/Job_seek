@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QLabel, QTableWidget, QTableWidgetItem, QHBoxLayout,
-    QPushButton, QMessageBox
+    QPushButton, QMessageBox, QHeaderView
 )
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
@@ -12,7 +12,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Import from users_orders_manager
 from users_orders_manager.interface import *
-
 
 class OrdersManagementPage(QWidget):
     def __init__(self):
@@ -33,10 +32,22 @@ class OrdersManagementPage(QWidget):
         layout.addWidget(label)
 
         # Set up the order table
-        self.order_table.setColumnCount(7)
+        self.order_table.setColumnCount(9)  # Increased column count for cities and sectors
+        self.order_table.setEditTriggers(QTableWidget.NoEditTriggers)
         self.order_table.setHorizontalHeaderLabels(
-            ["Order ID", "User ID", "User Name", "User Email", "Order Date", "Status", "Remaining Posts"]
+            ["Order ID", "User ID", "User Name", "User Email", "Cities", "Sectors", "Order Date", "Status", "Remaining Posts"]
         )
+        self.order_table.setStyleSheet("background-color: white;")
+        self.order_table.horizontalHeader().setStyleSheet("background-color: lightgray; font-size: 16;")
+        self.order_table.verticalHeader().setStyleSheet("background-color: lightgray; font-size: 16;")
+        # Enable auto-resize for columns and rows
+        self.order_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.order_table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.order_table.resizeColumnsToContents()
+        self.order_table.resizeRowsToContents()
+        # Enable word wrapping
+        self.order_table.setWordWrap(True)
+        self.order_table.setFont(QFont("Arial", 12))
         layout.addWidget(self.order_table)
 
         # Populate the table with data
@@ -73,28 +84,45 @@ class OrdersManagementPage(QWidget):
 
                 self.order_table.setItem(row, 2, QTableWidgetItem(user_name))
                 self.order_table.setItem(row, 3, QTableWidgetItem(user_email))
-                self.order_table.setItem(row, 4, QTableWidgetItem(order.order_date.strftime("%Y-%m-%d")))
-                self.order_table.setItem(row, 5, QTableWidgetItem(order.order_status.value))
-                self.order_table.setItem(row, 6, QTableWidgetItem(str(order.remaining_posts)))
-            
+
+                # Convert cities and sectors to strings, retrieving the name or other relevant attribute
+                cities = ", ".join(city.name if hasattr(city, 'name') else str(city) for city in order.cities) if order.cities else "N/A"
+                sectors = ", ".join(sector.name if hasattr(sector, 'name') else str(sector) for sector in order.sectors) if order.sectors else "N/A"
+
+                self.order_table.setItem(row, 4, QTableWidgetItem(cities))  # Cities column
+                self.order_table.setItem(row, 5, QTableWidgetItem(sectors))  # Sectors column
+
+                self.order_table.setItem(row, 6, QTableWidgetItem(order.order_date.strftime("%Y-%m-%d")))
+                self.order_table.setItem(row, 7, QTableWidgetItem(order.order_status.value))
+                self.order_table.setItem(row, 8, QTableWidgetItem(str(order.remaining_posts)))
+
             self.order_table.resizeColumnsToContents()
 
         except Exception as e:
             QMessageBox.warning(self, "Error", f"Failed to load orders: {str(e)}")
+
 
     def request_order(self):
         """Handle the 'Request Order' button click."""
         selected_row = self.order_table.currentRow()
         if selected_row >= 0:
             order_id = self.order_table.item(selected_row, 0).text()
+
+            # Get the order status before proceeding
+            order = get_order_by_id(order_id)
+            if order and order.order_status.value == 'Complete': 
+                QMessageBox.warning(self, "Warning", "This order has already been completed. You cannot request it again.")
+                return 
+
             try:
-                handle_order(order_id, email_db)  # Assuming handle_order is the correct function
-                QMessageBox.information(self, "Success", "Order requested successfully.")
+                status_flag = handle_order(order_id, email_db) 
+                QMessageBox.information(self, "Status:", status_flag)
                 self.populate_order_table()  # Refresh the table after the request
             except Exception as e:
                 QMessageBox.warning(self, "Error", f"Failed to request order: {str(e)}")
         else:
             QMessageBox.warning(self, "Error", "No order selected. Please select an order.")
+
 
     def delete_order(self):
         """Handle the 'Delete Order' button click."""
